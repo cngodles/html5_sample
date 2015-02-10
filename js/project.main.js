@@ -1,4 +1,4 @@
-skincenter = {
+var projectname = {
 	loaded:false,
 	
 }

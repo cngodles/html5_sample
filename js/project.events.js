@@ -27,7 +27,7 @@ var responder = {
 					responder.resizeCallbacks[i]();
 				}
 				catch(err){
-					if(console){ console.log('Function does not exist'); }	
+					logme('Function does not exist');
 				}
 			}
 		}
