@@ -18,11 +18,11 @@ var responder = {
 	isopen:true,
 	action:false,
 	curZindex:1,
-	resizeCallbacks:[function(){ responder.setFrameWidths() }],
+	resizeCallbacks:[function(){ responder.setFrameWidths(); }],
 	resized:function(){
 		var thisobj = this;
 		if(thisobj.resizeCallbacks.length > 0){
-			for(i=0; i < thisobj.resizeCallbacks.length; i++){
+			for(var i=0; i < thisobj.resizeCallbacks.length; i++){
 				try {
 					responder.resizeCallbacks[i]();
 				}
@@ -78,4 +78,4 @@ var responder = {
 			this.closeDeviceMenu();
 		}
 	}
-}
+};
