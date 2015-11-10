@@ -1,13 +1,16 @@
 body 			{ background-color: #fff; color: #5d5d5d; font-family:Arial, Helvetica, sans-serif; letter-spacing: normal; margin: 0; overflow-y: scroll; z-index: 1; }
 a 				{ border: 0 none; }
 input 			{ border-radius: 0; }
-#siteframe 		{ background-color: #25282a; overflow: hidden; position: relative; width: 100%; z-index: 1; min-width:320px; }
+div				{ display:block; }
+#siteframe 		{ background-color: #fff; overflow: hidden; position: relative; width: 100%; z-index: 1; min-width:320px; }
 #wrapper 		{ background-color: #ccc; width:100%; min-height: 400px; min-width: 1280px; z-index: 1; overflow:hidden; position:relative; }
 .inner 			{ margin: 0 auto; width: 1220px; z-index: 1; background-color:#CCC; }
 
-header			{ min-height:200px; font-size:24px; }
+#example-section .pad	{ padding:30px 0; }
+
+header			{ min-height:100px; font-size:24px; }
 header a		{ font-size:14px; }
-header .inner	{ min-height:200px; background-color:#999; }
+header .inner	{ min-height:100px; background-color:#999; }
 
 #mobile_menu 	{ display:block; position:absolute; top:0; right:0; }
 #responder 		{ left: -5000px; position: absolute; z-index: 1; }

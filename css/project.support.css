@@ -62,32 +62,3 @@
 .text_center	{ text-align:center; }
 
 .txtcondense	{ letter-spacing:-0.01em; }
-
-.fs_10	{ font-size:10px; }
-.fs_11	{ font-size:11px; }
-.fs_12	{ font-size:12px; }
-.fs_13	{ font-size:13px; }
-.fs_14	{ font-size:14px; }
-.fs_15	{ font-size:15px; }
-.fs_16	{ font-size:16px; }
-.fs_18	{ font-size:18px; }
-.fs_21	{ font-size:21px; }
-.fs_24	{ font-size:24px; }
-.fs_28	{ font-size:28px; }
-.fs_30	{ font-size:30px; }
-.fs_32	{ font-size:32px; }
-.fs_40	{ font-size:40px; }
-.fs_49	{ font-size:49px; }
-
-.lh_12	{ line-height:12px; }
-.lh_13	{ line-height:13px; }
-.lh_15	{ line-height:15px; }
-.lh_17	{ line-height:17px; }
-.lh_19	{ line-height:19px; }
-.lh_21	{ line-height:21px; }
-.lh_24	{ line-height:24px; }
-.lh_28	{ line-height:28px; }
-.lh_36	{ line-height:36px; }
-.lh_42	{ line-height:42px; }
-.lh_49	{ line-height:49px; }
-.lh_56	{ line-height:56px; }
