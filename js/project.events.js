@@ -44,7 +44,7 @@ var responder = {
 			this.closeDeviceMenu();
 			break;
 			case 10:
-			//
+			this.adjustDeviceMenu();
 			break;
 		}
 	},
@@ -62,15 +62,23 @@ var responder = {
 			thisobj.action = false;
 		});
 	},
+	adjustDeviceMenu:function(){
+		//Useful if menu size is different from Desktop to Tablet
+		var thisobj = this;
+		this.action = true;
+		if(this.isopen){
+			$("#wrapper").stop(true, true).css({'margin-left':thisobj.openwidth+'%'});
+		}
+	},
 	closeDeviceMenu:function(){
 		//Closes menu for tablets and phones.
+		var thisobj = this;
 		this.action = true;
 		$("#wrapper").stop(true, true).animate({'margin-left':'0'}, 600, function(){
-			$("#wrapper").unbind("click");
-			$("#wrapper").css('cursor','default');
+			$("#wrapper").unbind("click").css('cursor','default');
 			$("#nav-toggle").removeClass("active");
-			this.isopen = false;
-			this.action = false;
+			thisobj.isopen = false;
+			thisobj.action = false;
 		});
 	},
 	closeAllMenus:function(){
