@@ -1,9 +1,7 @@
 # html5_barebones
 ## Simple HTML starter Repo
 
-Provides simple HTML structure, JavaScript resizing rules, and basic CSS support.
-
-Use of HTML5 tags and IE8 and below HTML5 Shiv for full compatability.
+Provides simple HTML structure, JavaScript resizing rules, and basic CSS support. This is a quick starter for a simple HTML layout.
 
 ## Provides structure for 4 folds.
 
