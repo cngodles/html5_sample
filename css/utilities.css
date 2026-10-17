@@ -1,0 +1,29 @@
+/* Hide visually but keep available to screen readers. */
+.visually-hidden {
+    position: absolute !important;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* Vertical rhythm between direct children. Override with --flow-space. */
+.flow > * + * {
+    margin-block-start: var(--flow-space, 1em);
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
