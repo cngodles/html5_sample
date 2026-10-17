@@ -12,6 +12,18 @@ npx serve .
 python -m http.server
 ```
 
+## Building for deployment (optional)
+
+The source files work as-is. To produce a smaller copy for deployment, run (requires Node 18+, no packages to install):
+
+```sh
+npm run build
+# or
+node build.mjs
+```
+
+This writes a minified copy of the site to `dist/`, which git ignores, and replaces anything already there. Stylesheets linked from the HTML are combined into one `css/styles.css`. The JS step only removes comments and indentation; it isn't a real minifier, so avoid multi-line template literals. Upload the contents of `dist/` to your host.
+
 ## Files
 
 | File | Purpose |
@@ -21,6 +33,7 @@ python -m http.server
 | `css/utilities.css` | A few helper classes: `.visually-hidden`, `.flow`, `.text-left`, `.text-center`, `.text-right` |
 | `js/main.js` | Breakpoint helper, mobile menu behaviour, footer year |
 | `favicon.svg` | Placeholder icon |
+| `build.mjs` | Optional build script that writes a minified copy to `dist/` |
 
 ## Breakpoints
 

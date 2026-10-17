@@ -4,3 +4,4 @@ desktop.ini
 .vscode/
 .idea/
 node_modules/
+dist/
