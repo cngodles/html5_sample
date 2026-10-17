@@ -1,0 +1,403 @@
+/* ==========================================================================
+   Breakpoints (mobile-first). Keep in sync with BREAKPOINTS in js/main.js.
+
+     phone     0 – 767px     fluid
+     tablet    768 – 989px
+     desktop   990 – 1279px   full nav replaces the hamburger menu
+     wide      1280px +       container caps at --container
+   ========================================================================== */
+
+/* Tokens
+   ========================================================================== */
+
+:root {
+    --color-bg: #fff;
+    --color-surface: #f3f3f3;
+    --color-text: #2b2b2b;
+    --color-muted: #595959;
+    --color-accent: #0b5fff;
+    --color-border: #d9d9d9;
+    --color-header-bg: #1f1f1f;
+    --color-header-text: #fff;
+
+    --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --line-height: 1.6;
+
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 1rem;
+    --space-4: 1.5rem;
+    --space-5: 2rem;
+    --space-6: 3rem;
+
+    --container: 1220px;
+    --gutter: 1rem;
+    --header-height: 4rem;
+    --transition: 300ms ease;
+
+    color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-bg: #121212;
+        --color-surface: #1c1c1c;
+        --color-text: #e6e6e6;
+        --color-muted: #a8a8a8;
+        --color-accent: #7aa7ff;
+        --color-border: #333;
+        --color-header-bg: #000;
+    }
+}
+
+/* Reset
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+* {
+    margin: 0;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    min-height: 100dvh;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    line-height: var(--line-height);
+}
+
+img,
+picture,
+svg,
+video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    line-height: 1.2;
+    text-wrap: balance;
+}
+
+p {
+    text-wrap: pretty;
+}
+
+a {
+    color: var(--color-accent);
+}
+
+:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after,
+    ::backdrop {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+/* Layout
+   ========================================================================== */
+
+.container {
+    width: min(100% - 2 * var(--gutter), var(--container));
+    margin-inline: auto;
+}
+
+main {
+    flex: 1;
+}
+
+.section {
+    padding-block: var(--space-6);
+}
+
+.skip-link {
+    position: absolute;
+    top: var(--space-2);
+    left: var(--space-2);
+    z-index: 100;
+    padding: var(--space-2) var(--space-3);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    translate: 0 -200%;
+}
+
+.skip-link:focus {
+    translate: 0 0;
+}
+
+/* Header
+   ========================================================================== */
+
+.site-header {
+    background-color: var(--color-header-bg);
+    color: var(--color-header-text);
+}
+
+.site-header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    min-height: var(--header-height);
+}
+
+.site-logo {
+    color: inherit;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.site-nav {
+    display: none;
+}
+
+.site-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    padding: 0;
+    list-style: none;
+}
+
+.site-nav a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.site-nav a:hover {
+    text-decoration: underline;
+}
+
+/* Menu toggle (hamburger)
+   ========================================================================== */
+
+.menu-toggle {
+    display: grid;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.menu-toggle__bars,
+.menu-toggle__bars::before,
+.menu-toggle__bars::after {
+    display: block;
+    width: 28px;
+    height: 3px;
+    border-radius: 2px;
+    background-color: currentColor;
+}
+
+.menu-toggle__bars {
+    position: relative;
+}
+
+.menu-toggle__bars::before,
+.menu-toggle__bars::after {
+    content: "";
+    position: absolute;
+    left: 0;
+}
+
+.menu-toggle__bars::before {
+    top: -8px;
+}
+
+.menu-toggle__bars::after {
+    top: 8px;
+}
+
+/* Mobile menu
+   Uses the native Popover API: the browser handles open/close, Escape,
+   click-outside and returning focus to the toggle.
+   ========================================================================== */
+
+.mobile-menu {
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: min(80vw, 320px);
+    height: 100%;
+    max-height: none;
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+    border: 0;
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    overflow-y: auto;
+    translate: 100% 0;
+    transition:
+        translate var(--transition),
+        display var(--transition) allow-discrete,
+        overlay var(--transition) allow-discrete;
+}
+
+.mobile-menu:popover-open {
+    translate: 0 0;
+}
+
+.mobile-menu::backdrop {
+    background-color: rgb(0 0 0 / 0);
+    transition:
+        background-color var(--transition),
+        display var(--transition) allow-discrete,
+        overlay var(--transition) allow-discrete;
+}
+
+.mobile-menu:popover-open::backdrop {
+    background-color: rgb(0 0 0 / 0.5);
+}
+
+@starting-style {
+    .mobile-menu:popover-open {
+        translate: 100% 0;
+    }
+
+    .mobile-menu:popover-open::backdrop {
+        background-color: rgb(0 0 0 / 0);
+    }
+}
+
+.mobile-menu__close {
+    display: block;
+    width: 44px;
+    height: 44px;
+    margin-inline-start: auto;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.mobile-menu ul {
+    margin-top: var(--space-3);
+    padding: 0;
+    list-style: none;
+}
+
+.mobile-menu a {
+    display: block;
+    padding-block: var(--space-3);
+    border-bottom: 1px solid var(--color-border);
+    color: inherit;
+    font-size: 1.125rem;
+    text-decoration: none;
+}
+
+/* Browsers without the Popover API get the regular nav at every size. */
+@supports not selector(:popover-open) {
+    .site-nav {
+        display: block;
+    }
+
+    .menu-toggle,
+    .mobile-menu {
+        display: none;
+    }
+}
+
+/* Footer
+   ========================================================================== */
+
+.site-footer {
+    padding-block: var(--space-5);
+    background-color: var(--color-surface);
+    color: var(--color-muted);
+    font-size: 0.875rem;
+}
+
+.site-footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3) var(--space-5);
+}
+
+.site-footer ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2) var(--space-4);
+    padding: 0;
+    list-style: none;
+}
+
+.site-footer a {
+    color: inherit;
+}
+
+/* Breakpoints
+   ========================================================================== */
+
+/* tablet */
+@media (min-width: 768px) {
+    :root {
+        --gutter: 2rem;
+        --header-height: 5rem;
+    }
+}
+
+/* desktop */
+@media (min-width: 990px) {
+    .site-nav {
+        display: block;
+    }
+
+    .menu-toggle,
+    .mobile-menu {
+        display: none;
+    }
+}
+
+/* wide */
+@media (min-width: 1280px) {
+    :root {
+        --header-height: 6rem;
+    }
+}

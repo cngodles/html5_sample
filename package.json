@@ -1,0 +1,11 @@
+{
+    "name": "html5_sample",
+    "private": true,
+    "description": "Simple HTML starter template",
+    "scripts": {
+        "build": "node build.mjs"
+    },
+    "engines": {
+        "node": ">=18"
+    }
+}
